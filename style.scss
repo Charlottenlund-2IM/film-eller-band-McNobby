@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    background-size: contain;
+    background:fixed no-repeat url(https://i.pinimg.com/originals/bf/82/f6/bf82f6956a32819af48c2572243e8286.jpg);    
+}
+
+@mixin greenGrd {
+    background: rgb(114,207,115);
+    background: linear-gradient(90deg, rgba(114,207,115,1) 31%, rgba(32,214,47,1) 100%);
+}
+@mixin redGrd {
+    background: rgb(227,98,104);
+    background: linear-gradient(82deg, rgba(227,98,104,1) 31%, rgba(214,84,32,1) 100%); 
+}
+
+.grid{
+    background: inherit;
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 400px 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "tbb    name   name"
+                         "list   card1  card2"
+                         "list   card3  card4"
+                         "ad     card5  card6";
+
+    .tbb{
+        grid-area: tbb;
+        padding: 20px;
+        .wrap{
+            @include greenGrd()
+        }
+    }
+    .name{
+        grid-area: name;
+        padding: 20px;
+        .wrap{
+            padding: 40px;
+            background: rgb(114,207,193);
+            background: linear-gradient(90deg, rgba(114,207,193,1) 31%, rgba(32,97,214,1) 100%); 
+        }
+    }
+    .card1{
+        grid-area: card1;
+    }
+    .list{
+        grid-area: list;
+        padding: 20px;
+        height: 100%;
+        .wrap{
+            background: rgb(114,207,193);
+            background: linear-gradient(180deg, rgba(114,207,193,1) 31%, rgba(194,32,214,1) 100%); 
+        }
+    }
+    .card4{
+        grid-area: card4;
+        .wrap{
+            background: rgb(227,98,220);
+            background: linear-gradient(82deg, rgb(168, 71, 163) 31%, rgb(199, 78, 30) 100%);   
+        }
+    }
+    .card5{
+        grid-area: card5;
+    }
+    .card6{
+        grid-area: card6;
+    }
+
+    .ad{
+        grid-area: ad;
+        padding: 20px;
+        max-height: 100%;
+        max-width: 100%;
+        .wrap{
+            padding: 20px;
+            background-color: burlywood;
+            img{
+                width: 100%;
+                max-height: 100%;
+                border-radius: 10px;
+            }
+        }
+    }
+}
+
+.card{
+    padding: 20px;
+    background: inherit;
+    .wrap{
+        font-size: 15px;
+        padding: 40px;
+        position: relative;
+        background: inherit;
+          overflow: hidden;
+        z-index: 1;
+        &::before{
+            content: "";
+            position: absolute;
+            background: inherit;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+            filter: blur(10px);
+            margin: -20px;
+        }
+    }
+}
+
+.wrap{
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.65);
+    transition: all 0.3s;
+    
+        font-size: 15px;
+        padding: 40px;
+        position: relative;
+        background: inherit;
+          overflow: hidden;
+        z-index: 1;
+        &::before{
+            content: "";
+            position: absolute;
+            background: inherit;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+            filter: blur(10px);
+            margin: -20px;
+        }
+}
+
+footer{
+    grid-area: footer;
+    padding: 40px;
+    color: #fff;
+    position: relative;
+    background: inherit;
+    box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.65);
+    overflow: hidden;
+    margin-top: 50px;
+    z-index: 1;
+    &::before{
+        content: "";
+        position: absolute;
+        background: inherit;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+        filter: blur(10px);
+        margin: -20px;
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    .list{
+        .wrap{
+            background: rgb(114,207,193);
+            background: linear-gradient(0deg, rgba(114,207,193,1) 31%, rgba(194,32,214,1) 100%);  
+           }
+        }
+        
+    .grid{
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: 
+        "tbb    name   name"
+        "card1   card2  card3"
+        "ad   list  list"
+        "card6 card4 card5";
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .tbb{
+        display: none;
+    }
+        
+    .grid{
+        grid-template-rows: 1fr 200px repeat(4, 1fr);
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "name   name"
+        "list   list"
+        "card1  card2"
+        "ad     card3"
+        "card4  card5"
+        "card6  blank"
+        ;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .tbb{
+        display: none;
+    }
+    
+    .grid{
+        width: 98%;
+        grid-template-rows: 1fr 200px repeat(7, 1fr);
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "name"
+        "list"
+        "card1"
+        "ad   "
+        "card2"
+        "card3"
+        "card4"
+        "card5"
+        "card6"
+        ;
+    }
+}
